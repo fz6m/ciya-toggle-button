@@ -1,0 +1,92 @@
+@import './image';
+
+.ciya-toggle-button {
+
+    --button-width: 155px;
+    --button-height: 80px;
+
+    --toggle-diameter: calc(var(--button-height) * .75);
+    --button-toggle-offset: calc((var(--button-height) - var(--toggle-diameter)) / 2);
+    --toggle-shadow-offset: 10px;
+    --toggle-shadow-color: rgba(0, 0, 0, .1);
+    --color-grey: #E9E9E9;
+    --color-green: #30D158;
+    --shadow-orange: #DC8A09;
+
+    pointer-events: none;
+
+    // 按钮框架
+    &-span {
+        display: inline-block;
+        width: var(--button-width);
+        height: var(--button-height);
+        border-radius: calc(var(--button-height) / 2);
+        position: relative;
+        overflow: hidden;
+        background-color: var(--color-green);
+
+        // 背景
+        &::before {
+            content: '';
+            display: inline-block;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(ellipse, var(--color-grey) 100%, transparent 0%);
+            transform: scale(1);
+            opacity: 1;
+            transition: .3s all ease-in-out;
+            border-radius: calc(var(--button-height) / 2);
+        }
+
+        // 按键
+        &::after {
+            content: '';
+            display: inline-block;
+            position: absolute;
+            top: var(--button-toggle-offset);
+            width: var(--toggle-diameter);
+            height: var(--toggle-diameter);
+            border-radius: calc(var(--toggle-diameter) / 2);
+            background: url(#{$kuaikule}) center center no-repeat;
+            background-size: contain;
+            background-color: #fff;
+            transform: translateX(var(--button-toggle-offset));
+            box-shadow: var(--toggle-shadow-offset) 0 calc(var(--toggle-shadow-offset) * 4) var(--toggle-shadow-color),
+                0 0 7px 0 var(--shadow-orange);
+            transition: all .3s ease-in-out;
+            pointer-events: all;
+            cursor: pointer;
+        }
+    }
+
+
+    input[type="checkbox"] {
+        display: none;
+
+        &:checked {
+
+            // 背景变换
+            &+span::before {
+                transform: scale(0);
+                opacity: 0;
+            }
+
+            // 按钮位移
+            &+span::after {
+                background-image: url(#{$ciya});
+                transform: translateX(calc(var(--button-width) - var(--toggle-diameter) - var(--button-toggle-offset)));
+                box-shadow: calc(var(--toggle-shadow-offset) * -1) 0 calc(var(--toggle-shadow-offset) * 4) var(--toggle-shadow-color),
+                    0 0 10px 0 var(--shadow-orange);
+            }
+        }
+    }
+}
+
+
+body  {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
