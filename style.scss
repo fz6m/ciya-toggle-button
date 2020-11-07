@@ -63,6 +63,8 @@
 
     input[type="checkbox"] {
         display: none;
+        -webkit-tap-highlight-color: transparent;
+        outline: none;
 
         &:checked {
 
@@ -89,4 +91,7 @@ body  {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+    overflow: hidden;
+    /* 防止 ios 闪动 */
+    -webkit-tap-highlight-color: transparent;
 }
