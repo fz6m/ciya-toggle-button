@@ -1,5 +1,8 @@
 # ciya-toggle-button
 
+纯 css 实现 QQ 呲牙表情 checkbox 切换按钮实例（要我一直笑吗）
+
+在线实例：[一键呲牙](https://fz6m.github.io/ciya-toggle-button/index.html)
 
 ### 效果
 
