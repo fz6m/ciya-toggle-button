@@ -1,4 +1,3 @@
-@charset "UTF-8";
 .ciya-toggle-button {
   --button-width: 155px;
   --button-height: 80px;
@@ -18,7 +17,6 @@
   border-radius: calc(var(--button-height) / 2);
   position: relative;
   overflow: hidden;
-  background-color: var(--color-green);
 }
 .ciya-toggle-button-span::before {
   content: "";
@@ -63,6 +61,28 @@
   transform: translateX(calc(var(--button-width) - var(--toggle-diameter) - var(--button-toggle-offset)));
   box-shadow: calc(var(--toggle-shadow-offset) * -1) 0 calc(var(--toggle-shadow-offset) * 4) var(--toggle-shadow-color), 0 0 10px 0 var(--shadow-orange);
 }
+@keyframes go {
+  from {
+    background-color: var(--color-green);
+  }
+  to {
+    background-color: var(--color-green);
+  }
+}
+@keyframes back {
+  from {
+    background-color: var(--color-green);
+  }
+  to {
+    background-color: var(--color-grey);
+  }
+}
+.ciya-toggle-button input[type=checkbox]:checked + span {
+  animation: go 0s forwards;
+}
+.ciya-toggle-button input[type=checkbox] + span {
+  animation: back 0.3s step-end forwards;
+}
 
 body {
   display: flex;
@@ -70,6 +90,5 @@ body {
   align-items: center;
   min-height: 100vh;
   overflow: hidden;
-  /* 防止 ios 闪动 */
   -webkit-tap-highlight-color: transparent;
 }

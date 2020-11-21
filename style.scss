@@ -23,7 +23,6 @@
         border-radius: calc(var(--button-height) / 2);
         position: relative;
         overflow: hidden;
-        background-color: var(--color-green);
 
         // 背景
         &::before {
@@ -82,6 +81,35 @@
                     0 0 10px 0 var(--shadow-orange);
             }
         }
+
+        // 防止因 css2 和 css3 范围设定不同产生的绿边
+        @keyframes go {
+            from {
+                background-color: var(--color-green);
+            }
+            to {
+                background-color: var(--color-green);
+            }
+        }
+
+        @keyframes back {
+            from {
+                background-color: var(--color-green);
+            }
+            to {
+                background-color: var(--color-grey);
+            }
+        }
+        
+        &:checked {
+            & + span {
+                animation: go 0s forwards;
+            }
+        }
+
+        & + span {
+            animation: back .3s step-end forwards;
+        }
     }
 }
 
@@ -92,6 +120,6 @@ body  {
     align-items: center;
     min-height: 100vh;
     overflow: hidden;
-    /* 防止 ios 闪动 */
+    // 防止 ios 闪动
     -webkit-tap-highlight-color: transparent;
 }
